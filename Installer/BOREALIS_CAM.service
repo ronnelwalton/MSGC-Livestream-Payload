@@ -1,0 +1,12 @@
+[Unit]
+Description=BOREALIS_Payload_Cam_Livestream_service
+After=network.target
+Type=simple
+
+[Service]
+ExecStart=/home/pi/BOREALIS_Cam/test-launch "rpicamsrc bitrate=8000000 preview=false ! video/x-h264, width=640, height=480, framerate=30/1 ! h264parse ! rtph264pay name=pay0 pt=96"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
